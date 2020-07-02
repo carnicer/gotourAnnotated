@@ -16,12 +16,13 @@ func adder() func(int) int {
 func main() {
 	//pos, neg := adder(), adder()
 	pos := adder()
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 5; i++ {
 		fmt.Println(
 			"i:",
 			i,
 			"--",
 			pos(i),
+			pos(-2*i),
 		)
 		fmt.Println("----")
 	}
