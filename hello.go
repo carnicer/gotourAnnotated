@@ -14,15 +14,14 @@ func adder() func(int) int {
 }
 
 func main() {
-	pos, neg := adder(), adder()
-	//pos := adder()
+	//pos, neg := adder(), adder()
+	pos := adder()
 	for i := 0; i < 4; i++ {
 		fmt.Println(
 			"i:",
 			i,
 			"--",
 			pos(i),
-			neg(-2*i),
 		)
 		fmt.Println("----")
 	}
