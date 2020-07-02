@@ -1,12 +1,12 @@
 package main
 
-import (
-	"fmt"
-)
-
-var c, python, java bool
+import "fmt"
 
 func main() {
-	var i int
-	fmt.Println(i, c, python, java)
+	sum := 0
+	for i := 0; i < 10; i++ {
+		fmt.Printf("sum:%v => += %v\n", sum, i)
+		sum += i
+	}
+	fmt.Println(sum)
 }
