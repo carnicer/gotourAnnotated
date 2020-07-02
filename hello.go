@@ -1,18 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"math/cmplx"
-)
+import "fmt"
 
-var (
-	ToBe bool = false
-	MaxInt uint64 = 1<<64 - 1
-	z complex128 = cmplx.Sqrt(-5 + 12i)
-)
+const Pi = 3.14
 
 func main() {
-	fmt.Printf("var ToBe    | Type: %T -- value: %v\n", ToBe, ToBe)
-	fmt.Printf("var MaxInt  | Type: %T -- value: %v\n", MaxInt, MaxInt)
-	fmt.Printf("var z       | Type: %T -- value: %v\n", z, z)
+	const World = "世界"
+	fmt.Println("Hello", World)
+	fmt.Println("Happy", Pi, "Day")
+
+	const Truth = true
+	fmt.Println("Go rules?", Truth)
 }
