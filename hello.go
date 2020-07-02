@@ -4,8 +4,7 @@ import "fmt"
 import "math"
 
 func powLimit(x, n, lim float64) float64 {
-	v := math.Pow(x, n)
-	if v < lim {
+	if v := math.Pow(x, n); v < lim {
 		return v
 	}
 	return lim
