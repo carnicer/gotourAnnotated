@@ -8,9 +8,11 @@ func fibonacci() func() int {
 	fmt.Println("fibonacci, initialized (0)")
 	return func() int {
 		fibonacci := prev + prevprev
+		/*
 		fmt.Printf("prevprev: %v => %v\n", prevprev, prev)
 		fmt.Printf("prev: %v => %v\n", prev, fibonacci)
 		fmt.Println("--")
+		*/
 		prevprev = prev
 		// first time, prev == fibonacci == 0
 		if prev == fibonacci {
@@ -24,13 +26,13 @@ func fibonacci() func() int {
 
 func main() {
 	f := fibonacci()
-	for i := 0; i < 11; i++ {
+	for i := 0; i < 13; i++ {
 		fmt.Println(
 			"#",
 			i,
 			"=>",
 			f(),
 		)
-		fmt.Println("----")
+		//fmt.Println("----")
 	}
 }
