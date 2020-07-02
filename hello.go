@@ -7,16 +7,16 @@ func main() {
 	printSlice(s)
 
 	// Slice the slice to give it zero length.
-	s = s[:0]
-	printSlice(s)
+	ss := s[:0]
+	printSlice(ss)
 
 	// Extend its length.
-	s = s[:4]
-	printSlice(s)
+	ss = s[:4]
+	printSlice(ss)
 
 	// Drop its first two values.
-	s = s[2:]
-	printSlice(s)
+	ss = s[2:]
+	printSlice(ss)
 }
 
 func printSlice(s []int) {
