@@ -1,18 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"math/cmplx"
-)
-
-var (
-	ToBe bool = false
-	MaxInt uint64 = 1<<64 - 1
-	z complex128 = cmplx.Sqrt(-5 + 12i)
-)
+import "fmt"
 
 func main() {
-	fmt.Printf("var ToBe    | Type: %T -- value: %v\n", ToBe, ToBe)
-	fmt.Printf("var MaxInt  | Type: %T -- value: %v\n", MaxInt, MaxInt)
-	fmt.Printf("var z       | Type: %T -- value: %v\n", z, z)
+	var i interface{} = "hello"
+
+	s := i.(string)
+	fmt.Println(s)
+
+	s, ok := i.(string)
+	fmt.Println(s, ok)
+
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
+
+	f = i.(float64) // panic
+	fmt.Println(f)
 }
+
