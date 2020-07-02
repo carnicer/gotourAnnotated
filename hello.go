@@ -3,17 +3,17 @@ package main
 import "fmt"
 
 type Vertex struct {
-	X int
-	Y int
+	X, Y int
 }
+
+var (
+	v1 = Vertex{1, 2}  // has type Vertex
+	v2 = Vertex{X: 1}  // Y:0 is implicit
+	v3 = Vertex{}      // X:0 and Y:0
+	v4 = Vertex{Y: 1}  // X:0 is implicit
+	p  = &Vertex{8, 2} // has type *Vertex
+)
 
 func main() {
-	vertex1 := Vertex{1, 2}
-	fmt.Println(vertex1)
-	p := &vertex1
-	p.X = 33
-	fmt.Println(vertex1)
-	(*p).X = 36
-	fmt.Println(vertex1)
+	fmt.Println(v1, v2, v3, v4, p)
 }
-
