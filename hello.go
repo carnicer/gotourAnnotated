@@ -1,20 +1,22 @@
 package main
 
-import "fmt"
-import "math"
-
-func powLimit(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
-		return v
-	} else {
-		fmt.Printf("%g < %g (limit)\n", v, lim)
-	}
-	return lim
-}
+import (
+	"fmt"
+	"runtime"
+)
 
 func main() {
-	fmt.Println(
-		powLimit(3, 2, 10),
-		powLimit(3, 3, 20),
-	)
+	fmt.Print("Go runs on ")
+	os := runtime.GOOS
+	switch os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		// freebsd, openbsd,
+		// plan9, windows...
+		fmt.Printf("%s.\n", os)
+	}
 }
+
