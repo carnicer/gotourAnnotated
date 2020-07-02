@@ -6,6 +6,8 @@ import "math"
 func powLimit(x, n, lim float64) float64 {
 	if v := math.Pow(x, n); v < lim {
 		return v
+	} else {
+		fmt.Printf("%g < %g (limit)\n", v, lim)
 	}
 	return lim
 }
