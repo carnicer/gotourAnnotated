@@ -2,11 +2,17 @@ package main
 
 import (
 	"fmt"
+	"math/cmplx"
 )
 
-var c, python, java bool
+var (
+	ToBe bool = false
+	MaxInt uint64 = 1<<64 - 1
+	z complex128 = cmplx.Sqrt(-5 + 12i)
+)
 
 func main() {
-	var i int
-	fmt.Println(i, c, python, java)
+	fmt.Printf("var ToBe    | Type: %T -- value: %v\n", ToBe, ToBe)
+	fmt.Printf("var MaxInt  | Type: %T -- value: %v\n", MaxInt, MaxInt)
+	fmt.Printf("var z       | Type: %T -- value: %v\n", z, z)
 }
