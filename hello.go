@@ -12,7 +12,7 @@ var (
 )
 
 func main() {
-	fmt.Printf("var ToBe    | Type: %N -- value: %v\n", ToBe, ToBe)
+	fmt.Printf("var ToBe    | Type: %T -- value: %v\n", ToBe, ToBe)
 	fmt.Printf("var MaxInt  | Type: %T -- value: %v\n", MaxInt, MaxInt)
 	fmt.Printf("var z       | Type: %T -- value: %v\n", z, z)
 }
