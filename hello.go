@@ -2,27 +2,34 @@ package main
 
 import "fmt"
 
-func adder() func(int) int {
-	sum := 0
-	fmt.Println("adder, initialized (0)")
-	return func(x int) int {
-		sum0 := sum
-		sum += x
-		fmt.Printf("sum: %v +%v => %v\n", sum0, x, sum)
-		return sum
+func fibonacci() func() int {
+	prev := 0
+	prevprev := 0
+	fmt.Println("fibonacci, initialized (0)")
+	return func() int {
+		fibonacci := prev + prevprev
+		fmt.Printf("prevprev: %v => %v\n", prevprev, prev)
+		fmt.Printf("prev: %v => %v\n", prev, fibonacci)
+		fmt.Println("--")
+		prevprev = prev
+		// first time, prev == fibonacci == 0
+		if prev == fibonacci {
+			prev = 1
+		} else {
+			prev = fibonacci
+		}
+		return fibonacci
 	}
 }
 
 func main() {
-	//pos, neg := adder(), adder()
-	pos := adder()
-	for i := 0; i < 5; i++ {
+	f := fibonacci()
+	for i := 0; i < 11; i++ {
 		fmt.Println(
-			"i:",
+			"#",
 			i,
-			"--",
-			pos(i),
-			pos(-2*i),
+			"=>",
+			f(),
 		)
 		fmt.Println("----")
 	}
