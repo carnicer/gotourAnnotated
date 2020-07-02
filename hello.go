@@ -3,22 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	s := []int{2, 3, 5, 7, 11, 13}
-	printSlice(s)
+	a := make([]int, 5)
+	printSlice("a", a)
 
-	// Slice the slice to give it zero length.
-	ss := s[:0]
-	printSlice(ss)
+	b := make([]int, 0, 5)
+	printSlice("b", b)
 
-	// Extend its length.
-	ss = s[:4]
-	printSlice(ss)
+	b2 := b[:2]
+	printSlice("b2", b2)
 
-	// Drop its first two values.
-	ss = s[2:]
-	printSlice(ss)
+	b25 := b2[2:5]
+	printSlice("b25", b25)
+
+	b = b[:6]
+	b26 := b2[2:6]
+	printSlice("b26", b26)
 }
 
-func printSlice(s []int) {
-	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+func printSlice(s string, x []int) {
+	fmt.Printf("%s len=%d cap=%d %v\n",
+		s, len(x), cap(x), x)
 }
