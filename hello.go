@@ -15,7 +15,7 @@ func main() {
 	b25 := b2[2:5]
 	printSlice("b25", b25)
 
-	b = b[:6]
+	b2 = append(b, 0)
 	b26 := b2[2:6]
 	printSlice("b26", b26)
 }
