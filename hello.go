@@ -3,15 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	primes := [6]int{2, 3, 5, 7, 11, 13}
-	fmt.Println(primes)
-	fmt.Println("--")
-	var slice []int = primes[1 : 4]
-	fmt.Println(slice)
-	slice2 := primes[2 : 4]
-	fmt.Println(slice2)
-	primes[2] = 0
-	fmt.Println("--")
-	fmt.Println(slice)
-	fmt.Println(slice2)
+	s := []int{2, 3, 5, 7, 11, 13}
+	printSlice(s)
+
+	// Slice the slice to give it zero length.
+	s = s[:0]
+	printSlice(s)
+
+	// Extend its length.
+	s = s[:4]
+	printSlice(s)
+
+	// Drop its first two values.
+	s = s[2:]
+	printSlice(s)
+}
+
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
