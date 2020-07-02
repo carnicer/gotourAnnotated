@@ -2,11 +2,18 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
-var c, python, java bool
+type Vertex struct {
+	X, Y float64
+}
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
 
 func main() {
-	var i int
-	fmt.Println(i, c, python, java)
+	v := Vertex{3, 4}
+	fmt.Println(v.Abs())
 }
