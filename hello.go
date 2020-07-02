@@ -1,15 +1,19 @@
 package main
 
 import "fmt"
+import "math"
+
+func powLimit(x, n, lim float64) float64 {
+	v := math.Pow(x, n)
+	if v < lim {
+		return v
+	}
+	return lim
+}
 
 func main() {
-	sum := 1
-	for {
-		fmt.Printf("sum:%v\n", sum)
-		sum += sum
-		if sum > 1000 {
-			break
-		}
-	}
-	fmt.Println(sum)
+	fmt.Println(
+		powLimit(3, 2, 10),
+		powLimit(3, 3, 20),
+	)
 }
