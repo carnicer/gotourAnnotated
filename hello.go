@@ -1,26 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-func main() {
-	a := make([]int, 5)
-	printSlice("a", a)
-
-	b := make([]int, 0, 5)
-	printSlice("b", b)
-
-	b2 := b[:2]
-	printSlice("b2", b2)
-
-	b25 := b2[2:5]
-	printSlice("b25", b25)
-
-	b2 = append(b, 0)
-	b26 := b2[2:6]
-	printSlice("b26", b26)
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
 }
 
-func printSlice(s string, x []int) {
-	fmt.Printf("%s len=%d cap=%d %v\n",
-		s, len(x), cap(x), x)
+func main() {
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+	fmt.Println(hypot(5, 12))
+	fmt.Println(hypot(3, 4))
+
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
 }
