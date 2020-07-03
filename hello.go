@@ -10,23 +10,29 @@ type Istring struct {
 	S string
 }
 
-type Ivector struct {
-	X, Y int
-}
-
-// This method means type T implements the interface I,
-// but we don't need to explicitly declare that it does so.
-func (is Istring) M() {
-	fmt.Println(is.S)
-}
-
-func (iv Ivector) M() {
-	fmt.Println(iv.X, iv.Y)
+func (t *Istring) M() {
+	if t == nil {
+		fmt.Println("<nil>")
+		return
+	}
+	fmt.Println(t.S)
 }
 
 func main() {
-	var i I = Istring{"hello"}
+	var i I
+
+	var t *Istring
+	i = t
+	describe(i)
 	i.M()
-	var v I = Ivector{3, 4}
-	v.M()
+
+	fmt.Println("--")
+
+	i = &Istring{"hello"}
+	describe(i)
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }
