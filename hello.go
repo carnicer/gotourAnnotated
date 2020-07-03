@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 type I interface {
 	M()
@@ -14,30 +11,23 @@ type T struct {
 }
 
 func (t *T) M() {
+	if t == nil {
+		fmt.Println("<nil>")
+		return
+	}
 	fmt.Println(t.S)
-}
-
-type F float64
-
-func (f F) M() {
-	fmt.Println(f)
 }
 
 func main() {
 	var i I
 
-	i = &T{"Hello"}
-	fmt.Println("describe i (type &T) ...")
+	var t *T
+	i = t
 	describe(i)
-	fmt.Println("i.M: ...")
 	i.M()
 
-	fmt.Println("--")
-
-	i = F(math.Pi)
-	fmt.Println("describe i (type F) ...")
+	i = &T{"hello"}
 	describe(i)
-	fmt.Println("i.M: ...")
 	i.M()
 }
 
