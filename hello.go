@@ -1,16 +1,9 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 type Vertex struct {
 	X, Y float64
-}
-
-func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
 func (v *Vertex) Scale(f float64) {
@@ -18,24 +11,23 @@ func (v *Vertex) Scale(f float64) {
 	v.Y = v.Y * f
 }
 
-func (v Vertex) ScaleNoPointer(f float64) {
+func ScaleFunc(v *Vertex, f float64) {
 	v.X = v.X * f
 	v.Y = v.Y * f
-	fmt.Printf("ScaleNoPointer. size of vertex sides: X=%v, Y=%v\n", v.X, v.Y)
 }
 
 func main() {
 	v := Vertex{3, 4}
-	fmt.Printf("size of vertex sides: X=%v, Y=%v\n", v.X, v.Y)
-	fmt.Printf("size of vertex = %v\n", v.Abs())
+	fmt.Println(v)
+	v.Scale(2)
+	ScaleFunc(&v, 10)
+	fmt.Println(v)
 
-	fmt.Println("scaling ...")
-	v.Scale(10)
-	fmt.Printf("size of vertex = %v\n", v.Abs())
-	fmt.Printf("size of vertex sides: X=%v, Y=%v\n", v.X, v.Y)
+	fmt.Println("--")
 
-	fmt.Println("scaling (no pointer) ...")
-	v.ScaleNoPointer(2)
-	fmt.Printf("size of vertex = %v\n", v.Abs())
-	fmt.Printf("size of vertex sides: X=%v, Y=%v\n", v.X, v.Y)
+	p := &Vertex{4, 3}
+	fmt.Println(p)
+	p.Scale(3)
+	ScaleFunc(p, 8)
+	fmt.Println(p)
 }
