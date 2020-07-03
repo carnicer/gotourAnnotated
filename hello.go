@@ -2,37 +2,20 @@ package main
 
 import "fmt"
 
-type I interface {
-	M()
-}
-
-type Istring struct {
-	S string
-}
-
-func (t *Istring) M() {
-	if t == nil {
-		fmt.Println("<nil>")
-		return
-	}
-	fmt.Println(t.S)
-}
-
 func main() {
-	var i I
+	var i interface{} = "hello"
 
-	var t *Istring
-	i = t
-	describe(i)
-	i.M()
+	s := i.(string)
+	fmt.Println(s)
 
-	fmt.Println("--")
+	s, ok := i.(string)
+	fmt.Println(s, ok)
 
-	i = &Istring{"hello"}
-	describe(i)
-	i.M()
-}
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
 
-func describe(i I) {
-	fmt.Printf("(%v, %T)\n", i, i)
+	/*
+	f = i.(float64) // panic
+	fmt.Println(f)
+	*/
 }
