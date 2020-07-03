@@ -1,32 +1,46 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type I interface {
 	M()
 }
 
-type Istring struct {
+type T struct {
 	S string
 }
 
-type Ivector struct {
-	X, Y int
+func (t *T) M() {
+	fmt.Println(t.S)
 }
 
-// This method means type T implements the interface I,
-// but we don't need to explicitly declare that it does so.
-func (is Istring) M() {
-	fmt.Println(is.S)
-}
+type F float64
 
-func (iv Ivector) M() {
-	fmt.Println(iv.X, iv.Y)
+func (f F) M() {
+	fmt.Println(f)
 }
 
 func main() {
-	var i I = Istring{"hello"}
+	var i I
+
+	i = &T{"Hello"}
+	fmt.Println("describe i (type &T) ...")
+	describe(i)
+	fmt.Println("i.M: ...")
 	i.M()
-	var v I = Ivector{3, 4}
-	v.M()
+
+	fmt.Println("--")
+
+	i = F(math.Pi)
+	fmt.Println("describe i (type F) ...")
+	describe(i)
+	fmt.Println("i.M: ...")
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }
