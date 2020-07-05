@@ -1,43 +1,23 @@
 package main
 
-import "fmt"
-import "time"
-
-func fibonacci(c, quit chan int) {
-	x, y := 0, 1
-	for {
-		select {
-		case c <- x:
-			fmt.Printf("fibonacci: number sent: %d\n", x)
-			x, y = y, x+y
-			fmt.Printf("fibonacci: now x=%d, y=%d\n", x, y)
-		case <-quit:
-			fmt.Println("fibonacci: quit")
-			return
-		}
-	}
-}
-
-func feeder(c, quit chan int) {
-		var fibonum int
-		for i := 0; i < 10; i++ {
-			fmt.Println("feeder: sleep ...\n")
-			time.Sleep(5 * time.Second)
-			fmt.Println("feeder: wait ...")
-			fibonum = <-c
-			fmt.Println("feeder: received fibonacci, sleep again ...\n")
-			time.Sleep(3 * time.Second)
-			fmt.Printf("feeder: fibonacci => %d\n", fibonum)
-		}
-		fmt.Println("feeder: sleep before QUIT ...\n")
-		time.Sleep(4 * time.Second)
-		fmt.Println("feeder: send QUIT via its channel\n")
-		quit <- 0
-}
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	c := make(chan int)
-	quit := make(chan int)
-	go feeder(c, quit)
-	fibonacci(c, quit)
+	tick := time.Tick(100 * time.Millisecond)
+	boom := time.After(500 * time.Millisecond)
+	for {
+		select {
+		case <-tick:
+			fmt.Println("tick.")
+		case <-boom:
+			fmt.Println("BOOM!")
+			return
+		default:
+			fmt.Println("    .")
+			time.Sleep(50 * time.Millisecond)
+		}
+	}
 }
