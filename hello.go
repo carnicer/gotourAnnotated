@@ -7,8 +7,8 @@ func sum(s []int, c chan int) {
 	for _, v := range s {
 		sum += v
 	}
+	fmt.Printf("%d items, sum=%v\n", len(s), sum)
 	c <- sum // send sum to c
-	fmt.Printf("sum=%v\n", sum)
 }
 
 func main() {
