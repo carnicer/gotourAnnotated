@@ -9,7 +9,7 @@ func sum(s []int, c chan int) {
 	for i, v := range s {
 		sum += v
 		fmt.Printf("- sum %d/%d items\n", i, size)
-		time.Sleep((1 * 100) * time.Millisecond)
+		time.Sleep(time.Duration(size) * 100 * time.Millisecond)
 	}
 	fmt.Printf("%d items, sum=%v\n", size, sum)
 	c <- sum // send sum to c
