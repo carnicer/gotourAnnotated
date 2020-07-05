@@ -12,12 +12,14 @@ type SafeCounter struct {
 }
 
 // Inc increments the counter for the given key.
-func (c *SafeCounter) Inc(key string) {
+func (c *SafeCounter) Inc(key string, wg* sync.WaitGroup) {
 	c.mux.Lock()
 	// Lock so only one goroutine at a time can access the map c.v.
 	c.v[key]++
 	c.mux.Unlock()
 	fmt.Println("--")
+
+	defer wg.Done()
 }
 
 // Value returns the current value of the counter for the given key.
@@ -29,11 +31,13 @@ func (c *SafeCounter) Value(key string) int {
 }
 
 func main() {
+	var waitGroup sync.WaitGroup
+
 	c := SafeCounter{v: make(map[string]int)}
 	for i := 0; i < 1000; i++ {
-		go c.Inc("somekey")
+		waitGroup.Add(1)
+		go c.Inc("somekey", &waitGroup)
 	}
 
-	fmt.Println(c.Value("somekey"))
-	defer fmt.Println(c.Value("somekey"))
+	defer fmt.Println("no wait (deferred):", c.Value("somekey"))
 }
