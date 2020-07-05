@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	//"time"
 )
 
 // SafeCounter is safe to use concurrently.
@@ -34,6 +33,6 @@ func main() {
 		go c.Inc("somekey")
 	}
 
-	time.Sleep(time.Second)
 	fmt.Println(c.Value("somekey"))
+	defer fmt.Println(c.Value("somekey"))
 }
