@@ -1,44 +1,22 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+)
 
-func sum(s []int, c chan int) {
-	size := len(s)
-	sum := 0
-	for i, v := range s {
-		sum += v
-		fmt.Printf("- sum %d/%d items\n", i, size)
-		time.Sleep(time.Duration(size) * 100 * time.Millisecond)
+func fibonacci(n int, c chan int) {
+	x, y := 0, 1
+	for i := 0; i < n; i++ {
+		c <- x
+		x, y = y, x+y
 	}
-	fmt.Printf("%d items, sum=%v\n", size, sum)
-	c <- sum // send sum to c
+	close(c)
 }
 
 func main() {
-	s := []int{7, 2, 8, -9, 4, 0}
-
-	c := make(chan int)
-
-	delimiterPos := 4
-
-	s1 := s[: delimiterPos]
-	fmt.Println(s1)
-	go sum(s1, c)
-
-	s2 := s[delimiterPos :]
-	fmt.Println(s2)
-	go sum(s2, c)
-
-	/*
-	x, y := <-c, <-c // receive from c
-	*/
-	waitMsg := "waiting for channel ..."
-	fmt.Println(waitMsg)
-	x := <-c
-	fmt.Println(waitMsg)
-	y := <-c
-
-	fmt.Println("--")
-	fmt.Printf("sum1=%d, sum2=%d\n", x, y)
+	c := make(chan int, 10)
+	go fibonacci(cap(c), c)
+	for i := range c {
+		fmt.Println(i)
+	}
 }
