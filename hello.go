@@ -21,11 +21,11 @@ func fibonacci(c, quit chan int) {
 func feeder(c, quit chan int) {
 		var fibonum int
 		for i := 0; i < 10; i++ {
-			fmt.Println("feeder: sleep ...")
+			fmt.Println("feeder: sleep ...\n")
 			time.Sleep(2 * time.Second)
 			fmt.Println("feeder: wait ...")
 			fibonum = <-c
-			fmt.Println("feeder: received fibonacci, sleep again ...")
+			fmt.Println("feeder: received fibonacci, sleep again ...\n")
 			time.Sleep(3 * time.Second)
 			fmt.Printf("feeder: fibonacci => %d\n", fibonum)
 		}
