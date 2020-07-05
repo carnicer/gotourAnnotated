@@ -7,7 +7,8 @@ func fibonacci(c, quit chan int) {
 	x, y := 0, 1
 	for {
 		select {
-		case c <- x:
+		case x:
+			c <- x
 			fmt.Printf("fibonacci: number sent: %d\n", x)
 			x, y = y, x+y
 			fmt.Printf("fibonacci: now x=%d, y=%d\n", x, y)
