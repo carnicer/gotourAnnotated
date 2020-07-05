@@ -18,7 +18,7 @@ func main() {
 
 	c := make(chan int)
 
-	delimiterPos := len(s)/2
+	delimiterPos := 2
 
 	s1 := s[: delimiterPos]
 	fmt.Println(s1)
