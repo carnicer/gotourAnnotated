@@ -18,11 +18,13 @@ func main() {
 
 	c := make(chan int)
 
-	s1 := s[: len(s)/2]
+	delimiterPos := len(s)/2
+
+	s1 := s[: delimiterPos]
 	fmt.Println(s1)
 	go sum(s1, c)
 
-	s2 := s[len(s)/2 :]
+	s2 := s[delimiterPos :]
 	fmt.Println(s2)
 	go sum(s2, c)
 
