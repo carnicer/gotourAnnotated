@@ -2,11 +2,21 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-var c, python, java bool
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
+}
 
 func main() {
-	var i int
-	fmt.Println(i, c, python, java)
+	go say("world")
+	fmt.Println("go launched, sleep ...")
+	//time.Sleep(100 * time.Millisecond)
+	fmt.Println("finished sleeping")
+	say("hello")
+	fmt.Println("finished")
 }
