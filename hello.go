@@ -4,9 +4,10 @@ import (
 	"fmt"
 )
 
-var c, python, java bool
+func add(x, y int) int {
+	return x + y
+}
 
 func main() {
-	var i int
-	fmt.Println(i, c, python, java)
+	fmt.Println(add(42, 11))
 }
