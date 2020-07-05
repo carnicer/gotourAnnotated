@@ -15,14 +15,16 @@ func fibonacci(c, quit chan int) {
 	}
 }
 
-func main() {
-	c := make(chan int)
-	quit := make(chan int)
-	go func() {
+func feeder(c, quit chan int) {
 		for i := 0; i < 10; i++ {
 			fmt.Println(<-c)
 		}
 		quit <- 0
-	}()
+}
+
+func main() {
+	c := make(chan int)
+	quit := make(chan int)
+	go feeder(c, quit)
 	fibonacci(c, quit)
 }
