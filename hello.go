@@ -40,4 +40,6 @@ func main() {
 	}
 
 	defer fmt.Println("no wait (deferred):", c.Value("somekey"))
+	waitGroup.Wait()
+	fmt.Println("after wait:", c.Value("somekey"))
 }
