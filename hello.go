@@ -1,13 +1,15 @@
 package main
 
 import "fmt"
+import "time"
 
 func sum(s []int, c chan int) {
 	size := len(s)
 	sum := 0
 	for i, v := range s {
 		sum += v
-		fmt.Printf("sum %d/%d items\n", i, size)
+		fmt.Printf("- sum %d/%d items\n", i, size)
+		time.Sleep((1 * 100) * time.Millisecond)
 	}
 	fmt.Printf("%d items, sum=%v\n", size, sum)
 	c <- sum // send sum to c
