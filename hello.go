@@ -25,6 +25,8 @@ func feeder(c, quit chan int) {
 			time.Sleep(2 * time.Second)
 			fmt.Println("feeder: wait ...")
 			fibonum = <-c
+			fmt.Println("feeder: received fibonacci, sleep again ...")
+			time.Sleep(3 * time.Second)
 			fmt.Printf("feeder: fibonacci => %d\n", fibonum)
 		}
 		fmt.Println("feeder: sleep before QUIT ...\n")
