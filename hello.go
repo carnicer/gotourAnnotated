@@ -3,11 +3,13 @@ package main
 import "fmt"
 
 func sum(s []int, c chan int) {
+	size := len(s)
 	sum := 0
-	for _, v := range s {
+	for i, v := range s {
 		sum += v
+		fmt.Printf("sum %d/%d items\n", i, size)
 	}
-	fmt.Printf("%d items, sum=%v\n", len(s), sum)
+	fmt.Printf("%d items, sum=%v\n", size, sum)
 	c <- sum // send sum to c
 }
 
