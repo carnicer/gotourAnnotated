@@ -22,7 +22,7 @@ func feeder(c, quit chan int) {
 		var fibonum int
 		for i := 0; i < 10; i++ {
 			fmt.Println("feeder: sleep ...\n")
-			time.Sleep(2 * time.Second)
+			time.Sleep(5 * time.Second)
 			fmt.Println("feeder: wait ...")
 			fibonum = <-c
 			fmt.Println("feeder: received fibonacci, sleep again ...\n")
@@ -30,7 +30,7 @@ func feeder(c, quit chan int) {
 			fmt.Printf("feeder: fibonacci => %d\n", fibonum)
 		}
 		fmt.Println("feeder: sleep before QUIT ...\n")
-		time.Sleep(time.Second)
+		time.Sleep(4 * time.Second)
 		fmt.Println("feeder: send QUIT via its channel\n")
 		quit <- 0
 }
